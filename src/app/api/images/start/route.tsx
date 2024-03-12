@@ -61,7 +61,7 @@ export async function GET() {
               overflow: "hidden",
             }}
           >
-            Type something in the text input below and we'll generate an image.
+            Type something in the text input below and we will generate an image.
           </div>
         </div>
       </div>
