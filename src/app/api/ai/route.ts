@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSSLHubRpcClient, Message } from "@farcaster/hub-nodejs";
+import { extractPathFromURL } from "@/app/utils/extractPathFromURL";
 
 const HUB_URL = process.env["HUB_URL"] || "nemes.farcaster.xyz:2283";
 const hubClient = getSSLHubRpcClient(HUB_URL);

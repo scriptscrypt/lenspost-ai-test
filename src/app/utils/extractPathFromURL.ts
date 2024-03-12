@@ -1,4 +1,4 @@
-function extractPathFromURL(url: string) {
+export function extractPathFromURL(url: string) {
   // Remove starting URL
   var path = url.replace("https://fal-cdn.batuhan-941.workers.dev/", "");
   // Remove .jpeg extension
