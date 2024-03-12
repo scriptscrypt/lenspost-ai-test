@@ -23,22 +23,20 @@ export async function POST(req: NextRequest) {
     }
 
     const message = inputText ?? "";
-    const imageUrl = `${process.env["HOST"]}/api/images/echo?date=${Date.now()}&message=${message}`;
+    const imageUrl = `${process.env["HOST"]}/api/images/ai?date=${Date.now()}&message=${message}`;
+    // const imageUrl = `${process.env["HOST"]}/api/images/ai/route?message=${message}`;
     return new NextResponse(
       `<!DOCTYPE html>
       <html>
         <head>
-          <title>Echo Says:</title>
-          <meta property="og:title" content="Echo Says:" />
+          <title>AI Frames</title>
+          <meta property="og:title" content="Prompt: " />
           <meta property="og:image" content="${imageUrl}" />
           <meta name="fc:frame" content="vNext" />
           <meta name="fc:frame:post_url" content="${postUrl}" />
           <meta name="fc:frame:image" content="${imageUrl}" />
           <meta name="fc:frame:button:1" content="See code" />
           <meta name="fc:frame:button:1:action" content="post_redirect" />
-          <meta name="fc:frame:button:2" content="(coming soon)" />
-          <meta name="fc:frame:button:2:action" content="link" />
-          <meta name="fc:frame:button:2:target" content="https://github.com/horsefacts/echo-the-dolphin" />
         </head>
         <body/>
       </html>`,
