@@ -19,14 +19,28 @@ export async function GET(req: NextRequest) {
 
   // use the search param and call the API : https://lexica.art/api/v1/search
   // and return the image url
-  const res = await axios.get(`https://lexica.art/api/v1/search?q=${message}`, {
-    headers: {
-      "x-api-key": process.env["LEXICA_ART_API_KEY"] ?? "",
+  const falApiKey =
+    "c8e1c9bf-7954-45a3-b2e9-f0bd9a92e583:9cdab69eead8fbfd4d51a1dc66377a54";
+  const response = await axios.post(
+    "https://fal.run/fal-ai/fast-sdxl",
+    {
+      prompt,
     },
-  });
+    {
+      headers: {
+        Authorization: `Key ${falApiKey}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
-  console.log("THE API RES IS :", res?.data);
-  
+  // Use the image URL from the API response
+  const imageUrl =
+    response?.data?.images[0]?.url ||
+    "https://imagedelivery.net/BXluQx4ige9GuW0Ia56BHw/2639523a-690b-47af-16ab-ca07697fd000/original";
+
+  console.log("THE API RES IS :", response?.data);
+
   return new ImageResponse(
     (
       <div
@@ -45,7 +59,7 @@ export async function GET(req: NextRequest) {
             objectFit: "cover", // Cover the area without losing aspect ratio
             width: "35%", // Image takes up 40% of the container's width
           }}
-          src="https://imagedelivery.net/BXluQx4ige9GuW0Ia56BHw/2639523a-690b-47af-16ab-ca07697fd000/original"
+          src={imageUrl}
         />
         <div
           style={{
