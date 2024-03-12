@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
   const response = await axios.post(
     "https://fal.run/fal-ai/fast-sdxl",
     {
-      message,
+      prompt: message,
     },
     {
       headers: {
