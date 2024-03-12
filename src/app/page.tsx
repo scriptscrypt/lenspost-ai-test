@@ -1,15 +1,14 @@
 import { Metadata } from "next";
-import Echo from "@/app/components/Echo";
 
-const postUrl = `${process.env["HOST"]}/api/echo`;
+const postUrl = `${process.env["HOST"]}/api/ai`;
 
 export async function generateMetadata(): Promise<Metadata> {
   const imageUrl = `${process.env["HOST"] || `https://ai-frames.vercel.app`}/api/images/start?date=${Date.now()}`;
   return {
-    title: "Echo the Dolphin",
-    description: "Type something and Echo will say it back!",
+    title: "AI FRAMES",
+    description: "Type something and We'll generate an Image",
     openGraph: {
-      title: "Echo the Dolphin",
+      title: "AI FRAMES",
       images: [imageUrl],
     },
     other: {
@@ -25,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <main className="flex flex-col text-center lg:p-16">
-      <Echo />
+      AI Images directly on Frames
     </main>
   );
 }

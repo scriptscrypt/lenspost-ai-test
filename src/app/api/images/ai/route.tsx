@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
       <div
         style={{
           display: "flex", // Use flex layout
-          flexDirection: "row", // Align items horizontally
+          flexDirection: "column", // Align items horizontally
           alignItems: "stretch", // Stretch items to fill the container height
           width: "100%",
           height: "100vh", // Full viewport height
@@ -57,7 +57,7 @@ export async function GET(req: NextRequest) {
           style={{
             height: "100%", // Make image full height
             objectFit: "cover", // Cover the area without losing aspect ratio
-            width: "35%", // Image takes up 40% of the container's width
+            width: "80%", // Image takes up 40% of the container's width
           }}
           src={imageUrl}
         />
@@ -79,7 +79,7 @@ export async function GET(req: NextRequest) {
           <div
             style={{
               color: "#0a588c",
-              fontSize: 72,
+              fontSize: 32,
               marginBottom: 12,
               display: "flex",
             }}
@@ -90,6 +90,7 @@ export async function GET(req: NextRequest) {
             style={{
               display: "flex",
               overflow: "hidden",
+              fontSize: 16,
             }}
           >
             &quot;{message}&quot;
