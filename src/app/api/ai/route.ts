@@ -6,7 +6,6 @@ const hubClient = getSSLHubRpcClient(HUB_URL);
 
 // const postUrl = `${process.env["HOST"]}/api/code`;
 const postUrl = `${process.env["HOST"]}/api/code`;
-
 export async function POST(req: NextRequest) {
   const {
     untrustedData: { inputText },
@@ -28,7 +27,11 @@ export async function POST(req: NextRequest) {
 
     console.log("Message in ai route is", message);
     console.log("imageUrl in ai route is", imageUrl);
-  
+
+    const slugForImage = extractPathFromURL(imageUrl);
+    const lenspostDesignURL = `https://app.lenspost.xyz/design/${slugForImage}`;
+    console.log("Lenspost URL is", lenspostDesignURL);
+
     return new NextResponse(
       `<!DOCTYPE html>
       <html>
@@ -37,7 +40,7 @@ export async function POST(req: NextRequest) {
           <meta property="og:title" content="Prompt: " />
           <meta property="og:image" content="${imageUrl}" />
           <meta name="fc:frame" content="vNext" />
-          <meta name="fc:frame:post_url" content="${postUrl}" />
+          <meta name="fc:frame:post_url" content="${lenspostDesignURL}" />
           <meta name="fc:frame:image" content="${imageUrl}" />
           <meta name="fc:frame:button:1" content="Remix on Lenpost" />
           <meta name="fc:frame:button:1:action" content="post_redirect" />
