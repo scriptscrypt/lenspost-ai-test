@@ -16,8 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
       "fc:frame": "vNext",
       "fc:frame:image": imageUrl,
       "fc:frame:post_url": postUrl,
-      "fc:frame:input:text": "Type something here...",
-      "fc:frame:button:1": "🐬 Echo",
+      "fc:frame:input:text": "Type your Prompt here",
+      "fc:frame:button:1": "Generate AI",
     },
   };
 }

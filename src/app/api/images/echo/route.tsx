@@ -14,6 +14,20 @@ let interBold = fs.readFileSync(interBoldPath);
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const message = searchParams.get("message") ?? "";
+  console.log("searchParams", searchParams);
+
+  // use the search param and call the API : https://lexica.art/api/v1/search
+  // and return the image url
+  const res = await fetch(
+    `https://lexica.art/api/v1/search?q=${message}`,
+    {
+      headers: {
+        "x-api-key": process.env["LEXICA_ART_API_KEY"] ?? "",
+      },
+    }
+  )
+
+  console.log("THE RES IS :", res?.json);
   return new ImageResponse(
     (
       <div
@@ -57,7 +71,7 @@ export async function GET(req: NextRequest) {
               display: "flex"
             }}
           >
-            <strong>Echo Says...</strong>
+            <strong>Generated Image for prompt:</strong>
           </div>
           <div
             style={{
