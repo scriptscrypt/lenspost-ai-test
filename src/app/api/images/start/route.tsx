@@ -53,7 +53,7 @@ export async function GET() {
               display: "flex"
             }}
           >
-            <strong>AI Frames</strong>
+            <strong>AI Frames </strong>
           </div>
           <div
             style={{
