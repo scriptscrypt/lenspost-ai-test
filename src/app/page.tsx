@@ -6,7 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const imageUrl = `${process.env["HOST"] || `https://ai-frames.vercel.app`}/api/images/start?date=${Date.now()}`;
   return {
     title: "AI FRAMES",
-    description: "Type something and We will generate an Image",
+    description: "Type something and We will generate an Image ",
     openGraph: {
       title: "AI FRAMES",
       images: [imageUrl],
