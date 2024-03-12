@@ -53,7 +53,7 @@ export async function GET() {
               display: "flex"
             }}
           >
-            <strong>Echo The Dolphin</strong>
+            <strong>AI Frames</strong>
           </div>
           <div
             style={{
@@ -61,7 +61,7 @@ export async function GET() {
               overflow: "hidden",
             }}
           >
-            Type something in the text input below and Echo will say it back.
+            Type something in the text input below and we'll generate an image.
           </div>
         </div>
       </div>
