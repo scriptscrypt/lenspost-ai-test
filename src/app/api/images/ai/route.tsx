@@ -17,11 +17,8 @@ export async function GET(req: NextRequest) {
   const message = searchParams.get("message") ?? "";
   console.log("searchParams Message", message);
 
-  // use the search param and call the API : https://lexica.art/api/v1/search
-  // and return the image url
-  const falApiKey = process.env.FAL_API_KEY;
-  
-    "c8e1c9bf-7954-45a3-b2e9-f0bd9a92e583:9cdab69eead8fbfd4d51a1dc66377a54";
+  const falApiKey = process.env["FAL_API_KEY"];
+
   const response = await axios.post(
     "https://fal.run/fal-ai/fast-sdxl",
     {
