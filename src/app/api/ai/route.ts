@@ -25,7 +25,10 @@ export async function POST(req: NextRequest) {
 
     const message = inputText ?? "";
     const imageUrl = `${process.env["HOST"]}/api/images/ai?date=${Date.now()}&message=${message}`;
-    // const imageUrl = `${process.env["HOST"]}/api/images/ai/route?message=${message}`;
+
+    console.log("Message in ai route is", message);
+    console.log("imageUrl in ai route is", imageUrl);
+  
     return new NextResponse(
       `<!DOCTYPE html>
       <html>
