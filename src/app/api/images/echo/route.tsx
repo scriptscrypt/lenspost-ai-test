@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { ImageResponse } from "next/og";
 import { join } from "path";
+import axios from "axios";
 import * as fs from "fs";
 
 export const dynamic = "force-dynamic";
@@ -14,20 +15,18 @@ let interBold = fs.readFileSync(interBoldPath);
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const message = searchParams.get("message") ?? "";
-  console.log("searchParams", searchParams);
+  console.log("searchParams Message", message);
 
   // use the search param and call the API : https://lexica.art/api/v1/search
   // and return the image url
-  const res = await fetch(
-    `https://lexica.art/api/v1/search?q=${message}`,
-    {
-      headers: {
-        "x-api-key": process.env["LEXICA_ART_API_KEY"] ?? "",
-      },
-    }
-  )
+  const res = await axios.get(`https://lexica.art/api/v1/search?q=${message}`, {
+    headers: {
+      "x-api-key": process.env["LEXICA_ART_API_KEY"] ?? "",
+    },
+  });
 
-  console.log("THE RES IS :", res?.json);
+  console.log("THE API RES IS :", res?.data);
+  
   return new ImageResponse(
     (
       <div
@@ -68,7 +67,7 @@ export async function GET(req: NextRequest) {
               color: "#0a588c",
               fontSize: 72,
               marginBottom: 12,
-              display: "flex"
+              display: "flex",
             }}
           >
             <strong>Generated Image for prompt:</strong>
