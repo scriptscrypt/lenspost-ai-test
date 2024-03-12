@@ -17,7 +17,8 @@ export async function GET(req: NextRequest) {
   const message = searchParams.get("message") ?? "";
   console.log("searchParams Message", message);
 
-  const falApiKey = `${process.env["FAL_API_KEY"]}` || process.env["FAL_API_KEY"];
+  const falApiKey =
+    `${process.env["FAL_API_KEY"]}` || process.env["FAL_API_KEY"];
 
   const response = await axios.post(
     "https://fal.run/fal-ai/fast-sdxl",
