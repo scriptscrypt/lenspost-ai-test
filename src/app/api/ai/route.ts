@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
     console.log("imageUrl in ai route is", imageUrl);
 
     const slugForImage = extractPathFromURL(imageUrl);
+    console.log("slugForImage is", slugForImage);
     const lenspostDesignURL = `https://app.lenspost.xyz/design/${slugForImage}`;
     console.log("Lenspost URL is", lenspostDesignURL);
 
