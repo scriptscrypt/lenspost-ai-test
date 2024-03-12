@@ -19,7 +19,8 @@ export async function GET(req: NextRequest) {
 
   // use the search param and call the API : https://lexica.art/api/v1/search
   // and return the image url
-  const falApiKey =
+  const falApiKey = process.env.FAL_API_KEY;
+  
     "c8e1c9bf-7954-45a3-b2e9-f0bd9a92e583:9cdab69eead8fbfd4d51a1dc66377a54";
   const response = await axios.post(
     "https://fal.run/fal-ai/fast-sdxl",
@@ -57,7 +58,7 @@ export async function GET(req: NextRequest) {
           style={{
             height: "100%", // Make image full height
             objectFit: "cover", // Cover the area without losing aspect ratio
-            width: "80%", // Image takes up 40% of the container's width
+            width: "100%", // Image takes up 100% of the container's width
           }}
           src={imageUrl}
         />
@@ -76,7 +77,7 @@ export async function GET(req: NextRequest) {
             marginTop: 24,
           }}
         >
-          <div
+          {/* <div
             style={{
               color: "#0a588c",
               fontSize: 32,
@@ -93,8 +94,8 @@ export async function GET(req: NextRequest) {
               fontSize: 16,
             }}
           >
-            &quot;{message}&quot;
-          </div>
+            {message}
+          </div> */}
         </div>
       </div>
     ),
