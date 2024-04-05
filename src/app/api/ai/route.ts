@@ -8,6 +8,7 @@ const hubClient = getSSLHubRpcClient(HUB_URL);
 // const postUrl = `${process.env["HOST"]}/api/code`;
 const postUrl = `${process.env["HOST"]}/api/code`;
 export async function POST(req: NextRequest) {
+  console.log(req);
   const {
     untrustedData: { inputText },
     trustedData: { messageBytes },
