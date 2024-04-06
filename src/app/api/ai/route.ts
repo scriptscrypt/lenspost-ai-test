@@ -1,18 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSSLHubRpcClient, Message } from "@farcaster/hub-nodejs";
-import { extractPathFromURL } from "@/app/utils/extractPathFromURL";
+import { extractPathFromURL } from "@/app/utils/functions/extractPathFromURL";
 
 const HUB_URL = process.env["HUB_URL"] || "nemes.farcaster.xyz:2283";
 const hubClient = getSSLHubRpcClient(HUB_URL);
 
 // const postUrl = `${process.env["HOST"]}/api/code`;
 const postUrl = `${process.env["HOST"]}/api/code`;
+
 export async function POST(req: NextRequest) {
   const {
     untrustedData: { inputText },
     trustedData: { messageBytes },
   } = await req.json();
+  console.log("inputText", inputText);
+  console.log("messageBytes", messageBytes);
   const frameMessage = Message.decode(Buffer.from(messageBytes, "hex"));
+  console.log("Frame Message", frameMessage);
+
   const validateResult = await hubClient.validateMessage(frameMessage);
   if (validateResult.isOk() && validateResult.value.valid) {
     const validMessage = validateResult.value.message;
@@ -29,11 +34,6 @@ export async function POST(req: NextRequest) {
     console.log("Message in ai route is", message);
     console.log("imageUrl in ai route is", imageUrl);
 
-    const slugForImage = extractPathFromURL(imageUrl);
-    console.log("slugForImage is", slugForImage);
-    const lenspostDesignURL = `https://app.lenspost.xyz/design/${slugForImage}`;
-    console.log("Lenspost URL is", lenspostDesignURL);
-
     return new NextResponse(
       `<!DOCTYPE html>
       <html>
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
           <meta property="og:title" content="Prompt: " />
           <meta property="og:image" content="${imageUrl}" />
           <meta name="fc:frame" content="vNext" />
-          <meta name="fc:frame:post_url" content="${lenspostDesignURL}" />
+          <meta name="fc:frame:post_url" content="${postUrl}" /> 
           <meta name="fc:frame:image" content="${imageUrl}" />
           <meta name="fc:frame:button:1" content="Remix on Lenpost" />
           <meta name="fc:frame:button:1:action" content="post_redirect" />
